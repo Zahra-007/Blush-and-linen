@@ -10,19 +10,25 @@ export default config({
     ? {
         kind: "github",
         repo: {
-          owner: process.env.NEXT_PUBLIC_GITHUB_REPO_OWNER!,
-          name: process.env.NEXT_PUBLIC_GITHUB_REPO_NAME!,
+          // Hardcoded — these are public constants, not secrets
+          owner: "Zahra-007",
+          name: "Blush-and-linen",
         },
       }
     : {
         kind: "local",
       },
+
+  ui: {
+    brand: { name: "Blush & Linen" },
+  },
+
   collections: {
     posts: collection({
       label: "Blog Posts",
       slugField: "title",
+      // Folder path where post files will be written inside the repo
       path: "content/posts/*",
-      format: { contentField: "content" },
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         publishedDate: fields.date({
