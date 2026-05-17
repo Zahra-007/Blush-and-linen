@@ -11,7 +11,7 @@ export default function Contact() {
           {/* Image Side */}
           <div className="w-full md:w-1/2 relative min-h-[400px]">
             <img 
-              src="https://images.unsplash.com/photo-1600334129128-685054110de4?q=80&w=1000&auto=format&fit=crop" 
+              src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1000&auto=format&fit=crop" 
               alt="Contact Us Spa" 
               className="absolute inset-0 w-full h-full object-cover"
             />
