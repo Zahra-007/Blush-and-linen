@@ -1,16 +1,15 @@
 import { config, collection, fields } from "@keystatic/core";
 
-const hasGithubCreds =
-  !!process.env.KEYSTATIC_GITHUB_CLIENT_ID &&
-  !!process.env.KEYSTATIC_GITHUB_CLIENT_SECRET &&
-  !!process.env.KEYSTATIC_SECRET;
+// Vercel automatically exposes NEXT_PUBLIC_VERCEL_ENV to both client and server.
+// In any Vercel environment (production or preview), use GitHub storage.
+// Locally, it defaults to 'local' storage so local dev and builds work flawlessly.
+const isVercel = !!process.env.NEXT_PUBLIC_VERCEL_ENV;
 
 export default config({
-  storage: hasGithubCreds
+  storage: isVercel
     ? {
         kind: "github",
         repo: {
-          // Hardcoded — these are public constants, not secrets
           owner: "Zahra-007",
           name: "Blush-and-linen",
         },
@@ -27,7 +26,6 @@ export default config({
     posts: collection({
       label: "Blog Posts",
       slugField: "title",
-      // Folder path where post files will be written inside the repo
       path: "content/posts/*",
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
